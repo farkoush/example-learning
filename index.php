@@ -27,11 +27,20 @@
 
 class AreYou{
 	function __construct(){
-		add_action('enqueue_block_editor_assets', array($this, 'adminAssets'));
+		// add_action('enqueue_block_editor_assets', array($this, 'adminAssets'));
+		add_action('init', array($this, 'adminAssets'));
 	}
 	function adminAssets(){
 		// wp_enqueue_script('ournewblock', plugin_dir_url(__FILE__) . 'test.js', array('wp-blocks'));
-		wp_enqueue_script('ournewblock', plugin_dir_url(__FILE__) . 'build/index.js', array('wp-blocks'));
+		wp_register_script('ournewblock', plugin_dir_url(__FILE__) . 'build/index.js', array('wp-blocks'));
+		register_block_type("ourplugin/are-you",array(
+			'editor_script' => 'ournewblock',
+			'render_callback' => array($this,'render_callback_save'),
+		));
+	}
+	function render_callback_save($attributes){
+		$html= '<div>' . $attributes['skyColor'] . '+++++ </div>';
+		return $html;
 	}
 }
 $areYou = new AreYou();

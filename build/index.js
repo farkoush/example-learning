@@ -10,6 +10,16 @@
 
 module.exports = window["wp"]["element"];
 
+/***/ }),
+
+/***/ "./src/block.json":
+/*!************************!*\
+  !*** ./src/block.json ***!
+  \************************/
+/***/ ((module) => {
+
+module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":2,"name":"create-block/todo-list","version":"0.1.0","title":"Todo List","category":"widgets","icon":"smiley","description":"Example static block scaffolded with Create Block tool.","supports":{"html":false},"textdomain":"todo-list","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css"}');
+
 /***/ })
 
 /******/ 	});
@@ -89,6 +99,7 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./block.json */ "./src/block.json");
 
 // import { registerBlockType } from '@wordpress/blocks';
 // import './style.scss';
@@ -97,8 +108,7 @@ __webpack_require__.r(__webpack_exports__);
 //  */
 // import Edit from './edit';
 // import save from './save';
-// import metadata from './block.json';
-// registerBlockType( metadata.name, {
+ // registerBlockType( metadata.name, {
 // 	/**
 // 	 * @see ./edit.js
 // 	 */
@@ -108,20 +118,17 @@ __webpack_require__.r(__webpack_exports__);
 // 	 */
 // 	save,
 // } );
+
 wp.blocks.registerBlockType("ourplugin/are-you", {
   title: "Are you",
   icon: "smilely",
   category: "common",
   attributes: {
     skyColor: {
-      type: "string",
-      source: "text",
-      selector: ".skyColor"
+      type: "string"
     },
     grassColor: {
-      type: "string",
-      source: "text",
-      selector: ".grassColor"
+      type: "string"
     }
   },
   edit: function (props) {
@@ -153,11 +160,7 @@ wp.blocks.registerBlockType("ourplugin/are-you", {
     }));
   },
   save: function (props) {
-    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "todaye sky is ", (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
-      className: "skyColor"
-    }, props.attributes.skyColor), " and ", (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
-      className: "grassColor"
-    }, props.attributes.grassColor), " color is y");
+    return null; // return <p>todaye sky is <span className="skyColor">{props.attributes.skyColor}</span> and <span className="grassColor">{props.attributes.grassColor}</span> color is y</p>
   }
 });
 })();

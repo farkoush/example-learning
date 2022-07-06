@@ -7,7 +7,7 @@
 //  */
 // import Edit from './edit';
 // import save from './save';
-// import metadata from './block.json';
+import metadata from './block.json';
 
 // registerBlockType( metadata.name, {
 // 	/**
@@ -26,8 +26,8 @@ wp.blocks.registerBlockType("ourplugin/are-you",{
     icon: "smilely",
     category: "common",
 	attributes: {
-		skyColor : {type: "string", source:"text", selector:".skyColor" },
-		grassColor: {type:"string", source:"text", selector:".grassColor"}
+		skyColor : {type: "string"},
+		grassColor: {type:"string"}
 	},
     edit: function(props){
 		console.log('props');
@@ -48,6 +48,7 @@ wp.blocks.registerBlockType("ourplugin/are-you",{
 		)
     },
     save: function(props) {
-        return <p>todaye sky is <span className="skyColor">{props.attributes.skyColor}</span> and <span className="grassColor">{props.attributes.grassColor}</span> color is y</p>
-    }
+		return null
+        // return <p>todaye sky is <span className="skyColor">{props.attributes.skyColor}</span> and <span className="grassColor">{props.attributes.grassColor}</span> color is y</p>
+    },
 })
