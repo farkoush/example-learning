@@ -20,7 +20,18 @@
  *
  * @see https://developer.wordpress.org/reference/functions/register_block_type/
  */
-function create_block_todo_list_block_init() {
-	register_block_type( __DIR__ . '/build' );
+// function create_block_todo_list_block_init() {
+// 	register_block_type( __DIR__ . '/build' );
+// }
+// add_action( 'init', 'create_block_todo_list_block_init' );
+
+class AreYou{
+	function __construct(){
+		add_action('enqueue_block_editor_assets', array($this, 'adminAssets'));
+	}
+	function adminAssets(){
+		// wp_enqueue_script('ournewblock', plugin_dir_url(__FILE__) . 'test.js', array('wp-blocks'));
+		wp_enqueue_script('ournewblock', plugin_dir_url(__FILE__) . 'build/index.js', array('wp-blocks'));
+	}
 }
-add_action( 'init', 'create_block_todo_list_block_init' );
+$areYou = new AreYou();

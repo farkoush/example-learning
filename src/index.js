@@ -1,38 +1,53 @@
-/**
- * Registers a new block provided a unique name and an object defining its behavior.
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-registration/
- */
-import { registerBlockType } from '@wordpress/blocks';
+// import { registerBlockType } from '@wordpress/blocks';
 
-/**
- * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
- * All files containing `style` keyword are bundled together. The code used
- * gets applied both to the front of your site and to the editor.
- *
- * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
- */
-import './style.scss';
+// import './style.scss';
 
-/**
- * Internal dependencies
- */
-import Edit from './edit';
-import save from './save';
-import metadata from './block.json';
+// /**
+//  * Internal dependencies
+//  */
+// import Edit from './edit';
+// import save from './save';
+// import metadata from './block.json';
 
-/**
- * Every block starts by registering a new block type definition.
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-registration/
- */
-registerBlockType( metadata.name, {
-	/**
-	 * @see ./edit.js
-	 */
-	edit: Edit,
-	/**
-	 * @see ./save.js
-	 */
-	save,
-} );
+// registerBlockType( metadata.name, {
+// 	/**
+// 	 * @see ./edit.js
+// 	 */
+// 	edit: Edit,
+// 	/**
+// 	 * @see ./save.js
+// 	 */
+// 	save,
+// } );
+
+
+wp.blocks.registerBlockType("ourplugin/are-you",{
+    title: "Are you",
+    icon: "smilely",
+    category: "common",
+	attributes: {
+		skyColor : {type: "string", source:"text", selector:".skyColor" },
+		grassColor: {type:"string", source:"text", selector:".grassColor"}
+	},
+    edit: function(props){
+		console.log('props');
+
+		console.log(props);
+
+		function skyColorChange (event){
+			props.setAttributes({skyColor: event.target.value })
+		}
+		function grassColorChange (event){
+			props.setAttributes({grassColor: event.target.value })
+		}
+        return (
+			<>
+				<input type="text" placeholder="sky color" value={props.attributes.skyColor} onChange={skyColorChange}/>
+				<input type="text" placeholder="grass color" value={props.attributes.grassColor} onChange={grassColorChange}/>
+			</>
+		)
+    },
+    save: function(props) {
+        return <p>todaye sky is <span className="skyColor">{props.attributes.skyColor}</span> and <span className="grassColor">{props.attributes.grassColor}</span> color is y</p>
+    }
+})
