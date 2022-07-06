@@ -1,12 +1,20 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 2,
-  "name": "create-block/todo-list",
+  "name": "ourplugin/are-you",
   "version": "0.1.0",
   "title": "Todo List",
-  "category": "widgets",
+  "category": "common",
   "icon": "smiley",
   "description": "Example static block scaffolded with Create Block tool.",
+  "attributes": {
+    "skyColor": {
+      "type": "string"
+    },
+    "grassColor": {
+      "type": "string"
+    }
+  },
   "supports": {
     "html": false
   },

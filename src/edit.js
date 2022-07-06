@@ -29,10 +29,22 @@ import './editor.scss';
  *
  * @return {WPElement} Element to render.
  */
-export default function Edit() {
+export default function Edit({attributes, setAttributes}) {
+	function skyColorChange (event){
+		setAttributes({skyColor: event.target.value })
+	}
+	function grassColorChange (event){
+		setAttributes({grassColor: event.target.value })
+	}
 	return (
-		<p { ...useBlockProps() }>
-			{ __( 'Todo List – hello from the editor!', 'todo-list' ) }
-		</p>
+				<>
+					{/* <p { ...useBlockProps() }> */}
+					<p>
+						{ __( 'Todo List – hello from the editor!', 'todo-list' ) }
+					</p>
+					<input type="text" placeholder="sky color" value={attributes.skyColor} onChange={skyColorChange}/>
+					<input type="text" placeholder="grass color" value={attributes.grassColor} onChange={grassColorChange}/>
+				</>
+
 	);
 }
